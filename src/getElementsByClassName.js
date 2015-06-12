@@ -4,7 +4,24 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-){
-  // your code here
+var getElementsByClassName = function(className){
+	var matched = [];
+	var body = arguments[1] || document.body;
+	var elements = body.childNodes;
+	
+	if(body.classList){
+		for (var c = 0; c < body.classList.length; c++){
+			if (body.classList[c] === className){
+				matched.push(body);
+			}
+		}
+	}
+
+	if (elements) {
+		for (var e = 0; e < elements.length; e++){
+			matched.push(getElementsByClassName(className, elements[e]))
+		}
+	}
+
+	return matched;
 };
