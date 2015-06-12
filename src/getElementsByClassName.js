@@ -5,7 +5,7 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className){
-	var matched = [];
+	var matched = arguments[2] || [];
 	var body = arguments[1] || document.body;
 	var elements = body.childNodes;
 	
@@ -19,7 +19,7 @@ var getElementsByClassName = function(className){
 
 	if (elements) {
 		for (var e = 0; e < elements.length; e++){
-			matched.push(getElementsByClassName(className, elements[e]))
+			getElementsByClassName(className, elements[e], matched);
 		}
 	}
 
